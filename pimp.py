@@ -5,7 +5,9 @@ import sys
 import ntpath
 
 import argparse
+import PIL
 from PIL import Image
+from PIL import ImageEnhance
 from typing import *
 from typeguard import typechecked
 
@@ -15,7 +17,7 @@ p.add_argument("-i", "--image", nargs='+', required=True, help="The images as in
 p.add_argument("-o", "--output", default=None, type=str, help="The directory output. This option is compatible with -f (--force-overwrite), that will save the copy of the image in the given output folder and overwrite the original images. Note that this parameter is required, except in the case where -f is used, where it becomes optional.")
 p.add_argument("-f", "--force-overwrite", dest="overwrite", default=False, action="store_true", help="The given images will be overwritten.")
 p.add_argument("-c", "--contrast", default=20, type=int, help="The contrast level to apply to all images.")
-p.add_argument("-s", "--saturation", default=20, type=int, help="The saturation level to apply to all images.")
+p.add_argument("-s", "--saturation", default=1.2, help="The saturation level to apply to all images.")
 args = p.parse_args()
 
 if not args.overwrite and args.output is None:
@@ -31,6 +33,7 @@ if args.output is not None:
 	if not args.output.endswith('/'):
 		args.output += os.sep
 
+args.saturation = float(args.saturation)
 
 @typechecked
 def change_contrast(image: Union[str, Image.Image], contrast_level: Optional[int] = None) -> Image:
@@ -50,7 +53,28 @@ def change_contrast(image: Union[str, Image.Image], contrast_level: Optional[int
 	return image.point(apply_contrast)
 
 
+def change_saturation(image: Union[str, Image.Image], saturation_level: Optional[Union[int, float]] = None) -> Image:
+	if isinstance(image, str):
+		image = Image.open(image)
+		image.load()
+	
+	if saturation_level is None:
+		global args
+		saturation_level = args.saturation
+	
+	converter = ImageEnhance.Color(image)
+	return converter.enhance(saturation_level)
+
+
 for image_name in args.image:
+	# Applying contrast
 	contrasted_pil_img = change_contrast(image_name)
+	
+	# Applying saturation
+	saturated_contrasted_pil_img = change_saturation(contrasted_pil_img)
+	
+	# Saving image
 	if args.output is not None:
-		contrasted_pil_img.save(args.output + ntpath.basename(image_name))
+		saturated_contrasted_pil_img.save(args.output + ntpath.basename(image_name))
+	if args.overwrite:
+		saturated_contrasted_pil_img.save(image_name)
