@@ -44,7 +44,43 @@ pip install pillow
 
 ### Installing
 
+To install this script, simply download the [script](https://raw.githubusercontent.com/Cynnexis/Pimp/master/pimp.py),
+or clone this repo:
+
+```bash
+git clone https://github.com/Cynnexis/Pimp.git
+```
+
 ### Running the script
+
+To run the script, use the following commands:
+
+```bash
+cd pimp/
+python pimp.py -i images/* -o pimped-images/ -c 20 -s 1.2
+```
+
+This will take all images in the folder `images/`, process them and save the results
+in `pimped-images/`. The contrast level is **20**, and the saturation level is
+**1.2**.
+
+The following is the list of all parameters:
+
+* `-i`/`--images`: The images. All given images will be loaded, modified and
+then saved somewhere else. The original images will not be changed, unless the
+option `-f` (`--force-overwrite`) is given.
+
+* `-o`/`--output`: The directory output. This option is compatible with `-f`
+(`--force-overwrite`), that will save the copy of the image in the given
+output folder and overwrite the original images. Note that this parameter is
+required, except in the case where `-f` is used, where it becomes optional.
+
+* `-f`/`--force-overwrite`: The given images will be overwritten. Be very
+careful using this option.
+
+* `-c`/`--contrast`: The contrast level to apply to all images.
+
+* `-s`/`--saturation`:The saturation level to apply to all images.
 
 ## Built With
 

@@ -5,7 +5,6 @@ import sys
 import ntpath
 
 import argparse
-import PIL
 from PIL import Image
 from PIL import ImageEnhance
 from typing import *
