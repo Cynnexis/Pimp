@@ -71,6 +71,15 @@ Please see the [LICENSE.txt](https://github.com/Cynnexis/Pimp/blob/master/LICENS
 file for more detail (it's a really fascinating story written in
 there!)
 
+## Acknowledgments
+
+* [Håken Lid](https://stackoverflow.com/users/1977847/h%c3%a5ken-lid)
+from "[StackOverflow - Change contrast of image in PIL](https://stackoverflow.com/a/42054155/7347145)"
+* [abarnert](https://stackoverflow.com/users/908494/abarnert) from
+"[StackOverflow - Change saturation with Imagekit, PIL or Pillow?](https://stackoverflow.com/a/16070333/7347145)"
+* [PurpleBooth](https://gist.github.com/PurpleBooth) for giving an
+[open-source template for README files](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+
 [git]: https://git-scm.com/
 [github]: https://github.com/
 [python 3.7]: https://www.python.org/downloads/release/python-374/
