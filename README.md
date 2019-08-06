@@ -21,7 +21,7 @@ works:
 
 ```bash
 pip install typeguard
-pip install pil
+pip install pillow
 ```
 
 if you use Anaconda, use the following commands:
@@ -31,7 +31,7 @@ if you use Anaconda, use the following commands:
 ```bash
 source activate <env>
 pip install typeguard
-conda install pil
+pip install pillow
 ```
 
 *On Windows:*
@@ -39,7 +39,7 @@ conda install pil
 ```bash
 activate <env>
 pip install typeguard
-conda install pil
+pip install pillow
 ```
 
 ### Installing
